@@ -27,7 +27,7 @@ const PostList = async() => {
   const data:postProps[]=await get_data();
   return (
     <div>
-        {data.map((post)=>(
+        {data.map((post)=>(   // or    {data.map((post :{id:number,body:string, title:string})=>( 
           <PostCard key={post.id} {...post}/>
       ))}
     </div>
