@@ -1,34 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+#  difference of useState and useEffect and useRef in react
+```
+"use client";
+useState => Purpose: useState is used for managing state within functional components. 
+ It allows you to create and manage state variables.
 
-First, run the development server:
+import React, { useState } from 'react';
+ function Counter() {
+  const [count, setCount] = useState(0);
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+    return (
+        <div>
+       <p>Count: {count}</p>
+       <button onClick={() => setCount(count + 1)>Increment</button>
+     </div>
+   );
+ }
+````
+
+
+## useRef Purpose: useEffect is used for managing side effects in functional components. It allows you to perform actions like data fetching, DOM manipulation, and cleanup operations when the component mounts, updates, or unmounts.
+
+```
+ import React, { useEffect } from 'react';
+
+const page = () => {
+  useEffect(() => {
+     Code to run when the component mounts or updates
+         console.log('Component did mount or update');
+         Return a cleanup function (optional)
+        return () => {
+           Code to run when the component unmounts or before it re-renders
+          console.log('Component will unmount or update');
+        };
+       }, []);
+      return (
+     <div>Example Component</div>
+      )
+     }
+
+ export default page
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## useRef => Purpose: useRef is used for creating mutable references to DOM elements or for storing values that persist between renders without causing re-renders.
+```
+import React, { useRef, useEffect } from 'react';
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+function FocusInput() {
+  const inputRef = useRef(null);
 
-## Learn More
+  useEffect(() => {
+    // Focus on the input element when the component mounts
+    inputRef.current.focus();
+  }, []);
 
-To learn more about Next.js, take a look at the following resources:
+  return <input ref={inputRef} />;
+}
+// or
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+function Counter() {
+  const countRef = useRef(0);
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+  const increment = () => {
+    countRef.current += 1;
+    console.log(`Count: ${countRef.current}`);
+  };
 
-## Deploy on Vercel
+  return (
+    <div>
+      <p>Count: {countRef.current}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  );
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
