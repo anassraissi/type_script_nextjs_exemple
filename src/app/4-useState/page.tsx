@@ -8,7 +8,7 @@ type UserType = {
 
 const UseStateExample = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUser] = useState<UserType | null>();
   // OR
   // const [user, setUser] = useState<UserType>();
 
@@ -18,6 +18,7 @@ const UseStateExample = () => {
     //  This is a common pattern in React for handling changes in input elements.
     //   The React.ChangeEvent interface represents the event object for input change events in React,
     //  and <HTMLInputElement> specifies that the event target is an input element.
+    console.log(e.target.value);
     setUsername(e.target.value);
   };
 
