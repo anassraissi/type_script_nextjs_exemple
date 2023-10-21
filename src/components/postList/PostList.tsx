@@ -8,7 +8,6 @@ const get_data=async()=>{
       throw new Error("Failed to fetch data")
     }
     return data.json();
-
 }
 
 // const PostList = async () => {
@@ -25,10 +24,11 @@ const get_data=async()=>{
 
 const PostList = async() => {
   const data:postProps[]=await get_data();
+  console.log(data);
   return (
     <div>
         {data.map((post)=>(   // or    {data.map((post :{id:number,body:string, title:string})=>( 
-          <PostCard key={post.id} {...post}/>
+          <PostCard key={post.id} {...post}/>  //kamala dyal 
       ))}
     </div>
   )
